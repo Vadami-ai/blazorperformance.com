@@ -1,0 +1,40 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const playbooks = (await getCollection('playbooks', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title="Playbooks — BlazorPerformance.com" description="Step-by-step runbooks for Blazor capacity planning, memory measurement, and scaling — with the formulas shown.">
+  <div class="eyebrow">Playbooks</div>
+  <h1 class="page-title">Runbooks from the field</h1>
+  <p class="page-sub">
+    Not think-pieces — step-by-step methodology you can follow, with every formula
+    and measurement command shown. Written the way a senior engineer would hand
+    work to a teammate.
+  </p>
+
+  <div class="pb-list" style="margin-top: 28px;">
+    {playbooks.map((p) => (
+      <a class="card pb-item" href={`/playbooks/${p.id}/`}>
+        <div>
+          <h2>{p.data.title}</h2>
+          <p>{p.data.description}</p>
+        </div>
+        <span class="meta">
+          {p.data.date.toLocaleDateString('en-US', { timeZone: 'UTC',  year: 'numeric', month: 'short', day: 'numeric' })}
+          {p.data.readingTime ? ` · ${p.data.readingTime}` : ''}
+        </span>
+      </a>
+    ))}
+  </div>
+</Base>
+
+<style>
+  .pb-list { display: flex; flex-direction: column; gap: 14px; }
+  .pb-item { display: flex; justify-content: space-between; gap: 20px; align-items: baseline; }
+  .pb-item:hover { text-decoration: none; border-color: var(--ink-400); }
+  .pb-item h2 { font-size: 18px; color: var(--ink-900); margin-bottom: 6px; }
+  .pb-item p { font-size: 14.5px; color: var(--ink-500); }
+  .pb-item .meta { font-size: 12.5px; color: var(--ink-400); white-space: nowrap; }
+  @media (max-width: 700px) { .pb-item { flex-direction: column; } }
+</style>

@@ -1,0 +1,19 @@
+{
+  "name": "blazorperformance.com",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Blazor scalability & performance engineering — tools, playbooks, and curated references.",
+  "license": "MIT",
+  "author": "Vadami LLC",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "sync-tools": "node scripts/sync-tools.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.3.0",
+    "astro": "^5.7.0"
+  }
+}

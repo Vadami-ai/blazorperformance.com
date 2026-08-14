@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import Newsletter from '../components/Newsletter.astro';
+---
+<Base title="About — BlazorPerformance.com" description="Who is behind BlazorPerformance.com and why it exists.">
+  <div class="eyebrow">About</div>
+  <h1 class="page-title">Why this site exists</h1>
+
+  <div class="prose" style="margin-top: 20px;">
+    <p>
+      Blazor made building rich .NET web UIs dramatically simpler — and quietly made
+      capacity engineering harder. Blazor Server holds per-user state in server
+      memory, rides on SignalR's unit economics, and behaves at 10,000 concurrent
+      users in ways that no getting-started tutorial prepares you for. The knowledge
+      for running it at enterprise scale exists, but it's scattered across official
+      docs, GitHub issues, conference talks, and the hard-won experience of the
+      relatively few teams who've done it.
+    </p>
+    <p>
+      <strong>BlazorPerformance.com collects that knowledge in one place</strong> —
+      as working tools, step-by-step playbooks, and a curated, annotated reference
+      directory. Everything here is field-tested: distilled from a decade of
+      performance engineering on large enterprise (ERP-class) applications, at the
+      scale where these problems stop being theoretical.
+    </p>
+    <h2>Principles</h2>
+    <ul>
+      <li><strong>Show the math.</strong> Every model and recommendation exposes its formulas and assumptions, so you can challenge them with your own numbers.</li>
+      <li><strong>Measure, don't guess.</strong> Defaults are illustrations; the playbooks always start with how to measure your own workload.</li>
+      <li><strong>Open source.</strong> The tools — and this site's resource directory itself — are open for inspection and contribution on <a href="https://github.com/Vadami-ai">GitHub</a>.</li>
+      <li><strong>Practice what we preach.</strong> This site is intentionally static and lightweight. A performance site that loads slowly would be its own counter-argument.</li>
+    </ul>
+    <h2>Who's behind it</h2>
+    <p>
+      BlazorPerformance.com is a <a href="https://vadami.ai">Vadami LLC</a> project,
+      built and maintained by Moorthi — a principal-level engineer and architect
+      with 30+ years leading technology teams and 10+ years focused on the
+      scalability and performance of enterprise applications. Occasional advisory
+      and training engagements are available — see
+      <a href="/work-with-me/">Work with me</a>.
+    </p>
+    <p>
+      Contact: <a href="mailto:info@vadami.ai">info@vadami.ai</a>
+    </p>
+  </div>
+
+  <div style="margin-top: 36px; max-width: 45em;">
+    <Newsletter />
+  </div>
+</Base>

@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { getCollection } from 'astro:content';
+const playbooks = (await getCollection('playbooks', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Base title="BlazorPerformance.com — Blazor scalability & performance engineering">
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow">Field-tested, not theoretical</div>
+      <h1>Blazor at enterprise scale is a solved problem.<br />The answers just weren't in one place — until now.</h1>
+      <p>
+        Tools, playbooks, and curated references for engineering Blazor Server and
+        WebAssembly apps that hold up at thousands of concurrent users — distilled
+        from a decade of performance engineering on large enterprise systems.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="/tools/capacity-calculator/">Open the capacity calculator</a>
+        <a class="btn" href="/playbooks/">Read the playbooks</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="feature card">
+    <div class="feature-copy">
+      <div class="eyebrow">Featured tool</div>
+      <h2>Blazor Server Capacity Calculator</h2>
+      <p>
+        Size app nodes, Azure SignalR units, memory, and daily message budget from
+        your measured workload assumptions. Interactive scaling curve, scenario
+        comparison, shareable plans. Free, open source, runs entirely in your browser.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-green" href="/tools/capacity-calculator/">Launch it →</a>
+        <a class="btn" href="https://github.com/Vadami-ai/blazor-server-capacity-calculator">Source on GitHub</a>
+      </div>
+    </div>
+    <a href="/tools/capacity-calculator/" class="feature-shot">
+      <img src="/images/capacity-calculator.png" alt="Screenshot of the Blazor Server Capacity Calculator" loading="lazy" />
+    </a>
+  </section>
+
+  <section class="grid-3 pillars">
+    <div class="card">
+      <div class="eyebrow">Tools</div>
+      <h3>Use, don't just read</h3>
+      <p>Interactive calculators and utilities you can put to work today — every one open source and inspectable.</p>
+      <a href="/tools/">Browse tools →</a>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Playbooks</div>
+      <h3>Runbooks, not blog posts</h3>
+      <p>Step-by-step methodology for capacity planning, memory measurement, and scaling decisions — with the formulas shown.</p>
+      <a href="/playbooks/">Read playbooks →</a>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Resources</div>
+      <h3>Curated, annotated</h3>
+      <p>The Blazor performance references worth your time, organized by the problem you're actually having — each with an honest note on why it's listed.</p>
+      <a href="/resources/">Explore resources →</a>
+    </div>
+  </section>
+
+  {playbooks.length > 0 && (
+    <section class="latest">
+      <div class="eyebrow">Latest playbooks</div>
+      <div class="grid-2" style="margin-top: 12px;">
+        {playbooks.slice(0, 2).map((p) => (
+          <a class="card playbook-card" href={`/playbooks/${p.id}/`}>
+            <h3>{p.data.title}</h3>
+            <p>{p.data.description}</p>
+            <span class="meta">{p.data.date.toLocaleDateString('en-US', { timeZone: 'UTC',  year: 'numeric', month: 'short', day: 'numeric' })}{p.data.readingTime ? ` · ${p.data.readingTime}` : ''}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section style="margin-top: 34px;">
+    <Newsletter />
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 26px 0 34px; }
+  .hero h1 {
+    font-size: 40px; line-height: 1.16; letter-spacing: -0.025em;
+    color: var(--ink-900); margin: 10px 0 16px; max-width: 21em;
+  }
+  .hero p { font-size: 17.5px; color: var(--ink-500); max-width: 44em; }
+  .hero-cta { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
+  .feature {
+    display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px;
+    align-items: center; margin-bottom: 22px;
+  }
+  .feature h2 { font-size: 26px; letter-spacing: -0.015em; color: var(--ink-900); margin: 6px 0 10px; }
+  .feature p { color: var(--ink-500); font-size: 15.5px; }
+  .feature-shot img { width: 100%; border-radius: 10px; border: 1px solid var(--ink-200); display: block; }
+  @media (max-width: 860px) { .feature { grid-template-columns: 1fr; } .hero h1 { font-size: 31px; } }
+  .pillars h3 { font-size: 17px; color: var(--ink-900); margin: 6px 0 8px; }
+  .pillars p { font-size: 14.5px; color: var(--ink-500); margin-bottom: 10px; }
+  .latest { margin-top: 30px; }
+  .playbook-card h3 { font-size: 17px; color: var(--ink-900); margin-bottom: 8px; }
+  .playbook-card p { font-size: 14.5px; color: var(--ink-500); margin-bottom: 10px; }
+  .playbook-card .meta { font-size: 12.5px; color: var(--ink-400); }
+  .playbook-card:hover { text-decoration: none; border-color: var(--ink-400); }
+</style>

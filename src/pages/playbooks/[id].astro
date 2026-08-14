@@ -1,0 +1,34 @@
+---
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('playbooks', ({ data }) => !data.draft);
+  return entries.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+<Base title={`${entry.data.title} — BlazorPerformance.com`} description={entry.data.description}>
+  <article>
+    <div class="eyebrow"><a href="/playbooks/">Playbooks</a></div>
+    <h1 class="page-title">{entry.data.title}</h1>
+    <p class="page-sub">{entry.data.description}</p>
+    <div class="meta">
+      {entry.data.date.toLocaleDateString('en-US', { timeZone: 'UTC',  year: 'numeric', month: 'long', day: 'numeric' })}
+      {entry.data.readingTime ? ` · ${entry.data.readingTime}` : ''}
+    </div>
+    <div class="prose" style="margin-top: 28px;">
+      <Content />
+    </div>
+  </article>
+  <div style="margin-top: 44px; max-width: 45em;">
+    <Newsletter />
+  </div>
+</Base>
+
+<style>
+  .meta { font-size: 13px; color: var(--ink-400); margin-top: 12px; }
+</style>

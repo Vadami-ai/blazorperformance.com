@@ -1,0 +1,37 @@
+---
+import Base from '../layouts/Base.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { getCollection, render } from 'astro:content';
+const entries = (await getCollection('news'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const rendered = await Promise.all(entries.map(async (e) => ({ e, Content: (await render(e)).Content })));
+---
+<Base title="What's new — BlazorPerformance.com" description="New tools, playbooks, and resources on BlazorPerformance.com.">
+  <div class="eyebrow">What's new</div>
+  <h1 class="page-title">Changelog</h1>
+  <p class="page-sub">
+    Every tool release, new playbook, and batch of added resources — also available
+    as an <a href="/rss.xml">RSS feed</a>.
+  </p>
+
+  <div class="news-list" style="margin-top: 28px;">
+    {rendered.map(({ e, Content }) => (
+      <article class="card news-item">
+        <div class="news-date">{e.data.date.toLocaleDateString('en-US', { timeZone: 'UTC',  year: 'numeric', month: 'long', day: 'numeric' })}</div>
+        <h2>{e.data.title}</h2>
+        <div class="prose news-body"><Content /></div>
+      </article>
+    ))}
+  </div>
+
+  <div style="margin-top: 36px; max-width: 45em;">
+    <Newsletter />
+  </div>
+</Base>
+
+<style>
+  .news-list { display: flex; flex-direction: column; gap: 16px; max-width: 45em; }
+  .news-date { font-size: 12.5px; color: var(--ink-400); font-weight: 600; }
+  .news-item h2 { font-size: 18px; color: var(--ink-900); margin: 4px 0 8px; }
+  .news-body { font-size: 14.5px; color: var(--ink-500); }
+</style>

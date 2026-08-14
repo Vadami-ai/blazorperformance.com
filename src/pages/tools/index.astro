@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+const tools = [
+  {
+    title: 'Blazor Server Capacity Calculator',
+    href: '/tools/capacity-calculator/',
+    repo: 'https://github.com/Vadami-ai/blazor-server-capacity-calculator',
+    blurb:
+      'Size app nodes, Azure SignalR units, memory, and daily message budget from measured workload assumptions. Scaling curve, scenario comparison, shareable plans.',
+    tags: ['Blazor Server', 'Azure SignalR', 'capacity planning'],
+  },
+];
+---
+<Base title="Tools — BlazorPerformance.com" description="Free, open-source tools for Blazor scalability and performance engineering.">
+  <div class="eyebrow">Tools</div>
+  <h1 class="page-title">Put the methodology to work</h1>
+  <p class="page-sub">
+    Every tool here is free, open source, and runs entirely in your browser — no
+    accounts, no telemetry, nothing leaves your machine. More are on the way.
+  </p>
+
+  <div class="grid-2" style="margin-top: 28px;">
+    {tools.map((t) => (
+      <div class="card tool-card">
+        <h2><a href={t.href}>{t.title}</a></h2>
+        <p>{t.blurb}</p>
+        <div class="tags">{t.tags.map((tag) => <span class="tag">{tag}</span>)}</div>
+        <div class="tool-actions">
+          <a class="btn btn-primary" href={t.href}>Open tool</a>
+          <a class="btn" href={t.repo}>Source</a>
+        </div>
+      </div>
+    ))}
+    <div class="card tool-card tool-soon">
+      <h2>Next up</h2>
+      <p>
+        More utilities from the same production toolbox are being prepared for
+        release. Watch <a href="/whats-new/">What's new</a> or subscribe to the
+        newsletter to hear when they land.
+      </p>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .tool-card h2 { font-size: 19px; margin-bottom: 8px; }
+  .tool-card h2 a { color: var(--ink-900); }
+  .tool-card p { font-size: 14.5px; color: var(--ink-500); }
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 16px; }
+  .tag {
+    font-size: 12px; font-weight: 600; color: var(--ink-500);
+    background: var(--ink-100); border-radius: 999px; padding: 3px 10px;
+  }
+  .tool-actions { display: flex; gap: 10px; }
+  .tool-soon { border-style: dashed; }
+  .tool-soon h2 { color: var(--ink-500); }
+</style>

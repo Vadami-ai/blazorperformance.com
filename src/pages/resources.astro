@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import data from '../data/resources.json';
+const total = data.categories.reduce((n, c) => n + c.links.length, 0);
+---
+<Base title="Resources — BlazorPerformance.com" description="Curated, annotated references for Blazor scalability and performance — organized by the problem you're having.">
+  <div class="eyebrow">Resources</div>
+  <h1 class="page-title">Curated, with judgment attached</h1>
+  <p class="page-sub">
+    {total} references organized by the problem you're actually having — not by
+    content type. Every link carries a note on why it earns a place here. Found
+    something that belongs on this list?
+    <a href="https://github.com/Vadami-ai/blazorperformance.com">Open a PR</a> —
+    the directory is itself open source.
+  </p>
+
+  <nav class="toc">
+    {data.categories.map((c) => <a href={`#${c.slug}`}>{c.title}</a>)}
+  </nav>
+
+  {data.categories.map((c) => (
+    <section id={c.slug} class="res-cat">
+      <h2>{c.title}</h2>
+      <p class="cat-intro">{c.intro}</p>
+      <div class="res-list">
+        {c.links.map((l) => (
+          <div class="card res-item">
+            <a href={l.href} target={l.href.startsWith('/') ? undefined : '_blank'} rel="noreferrer">{l.label}</a>
+            <p>{l.note}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+</Base>
+
+<style>
+  .toc { display: flex; flex-wrap: wrap; gap: 8px; margin: 22px 0 10px; }
+  .toc a {
+    font-size: 13px; font-weight: 600; color: var(--ink-500);
+    background: var(--ink-100); border-radius: 999px; padding: 5px 13px;
+  }
+  .toc a:hover { color: var(--ink-900); text-decoration: none; }
+  .res-cat { margin-top: 34px; }
+  .res-cat h2 { font-size: 21px; color: var(--ink-900); letter-spacing: -0.01em; }
+  .cat-intro { font-size: 14.5px; color: var(--ink-400); margin: 4px 0 14px; }
+  .res-list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 800px) { .res-list { grid-template-columns: 1fr; } }
+  .res-item { padding: 16px 18px; }
+  .res-item a { font-weight: 600; font-size: 15px; }
+  .res-item p { font-size: 13.5px; color: var(--ink-500); margin-top: 5px; }
+</style>
