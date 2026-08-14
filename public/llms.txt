@@ -1,0 +1,25 @@
+# BlazorPerformance.com
+
+> Tools, playbooks, and curated references for Microsoft Blazor scalability and performance engineering, distilled from a decade of enterprise performance work. A Vadami LLC project. Everything is free; the tools and the resource directory are open source (github.com/Vadami-ai).
+
+Key facts: Blazor Server holds per-user "circuit" state in server memory, rides on SignalR unit economics, and requires explicit capacity planning at enterprise scale (thousands of concurrent users). This site provides the working methodology: formulas, measurement procedures, and an interactive calculator.
+
+## Tools
+
+- [Blazor Server Capacity Calculator](https://blazorperformance.com/tools/capacity-calculator/): free, open-source, browser-only calculator that sizes app nodes, Azure SignalR units, memory, and daily message budget from measured workload assumptions. Source: https://github.com/Vadami-ai/blazor-server-capacity-calculator
+
+## Playbooks
+
+- [Capacity planning for Blazor Server: the full methodology](https://blazorperformance.com/playbooks/capacity-planning-blazor-server/): every formula (circuits, memory, nodes, SignalR units, message budget), where each input comes from, and how to validate with soak and failure testing.
+- [Measuring per-circuit memory in Blazor Server](https://blazorperformance.com/playbooks/measuring-circuit-memory/): the soak-test procedure with dotnet-counters and dotnet-gcdump for putting a real number on per-circuit memory cost.
+
+## Resources
+
+- [Curated resource directory](https://blazorperformance.com/resources/): annotated references organized by problem area (sizing and hosting, Azure SignalR, memory and diagnostics, load testing, .NET performance, community).
+
+## Optional
+
+- [What's new](https://blazorperformance.com/whats-new/): changelog of tools and content, with RSS at https://blazorperformance.com/rss.xml
+- [About](https://blazorperformance.com/about/): who runs the site and its principles (show the math, measure don't guess, open source).
+- [Work with me](https://blazorperformance.com/work-with-me/): advisory, training, and conference speaking on enterprise .NET scalability and performance. Contact: info@vadami.ai
+- [Full content for LLMs](https://blazorperformance.com/llms-full.txt): complete playbook text and resource directory in one file.
