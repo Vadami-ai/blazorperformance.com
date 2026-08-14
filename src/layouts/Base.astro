@@ -2,8 +2,16 @@
 interface Props {
   title: string;
   description?: string;
+  image?: string;
 }
-const { title, description = 'Blazor scalability & performance engineering: tools, playbooks, and curated references from a decade of enterprise performance work.' } = Astro.props;
+const {
+  title,
+  description = 'Blazor scalability & performance engineering: tools, playbooks, and curated references from a decade of enterprise performance work.',
+  image = '/images/capacity-calculator.png',
+} = Astro.props;
+const site = Astro.site ?? new URL('https://blazorperformance.com');
+const canonicalUrl = new URL(Astro.url.pathname, site).href;
+const imageUrl = new URL(image, site).href;
 const nav = [
   { href: '/tools/', label: 'Tools' },
   { href: '/playbooks/', label: 'Playbooks' },
@@ -20,6 +28,17 @@ const path = Astro.url.pathname;
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="BlazorPerformance.com" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:image" content={imageUrl} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={imageUrl} />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="alternate" type="application/rss+xml" title="BlazorPerformance: What's new" href="/rss.xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
