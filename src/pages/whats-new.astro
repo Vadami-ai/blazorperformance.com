@@ -6,11 +6,11 @@ const entries = (await getCollection('news'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const rendered = await Promise.all(entries.map(async (e) => ({ e, Content: (await render(e)).Content })));
 ---
-<Base title="What's new — BlazorPerformance.com" description="New tools, playbooks, and resources on BlazorPerformance.com.">
+<Base title="What's new | BlazorPerformance.com" description="New tools, playbooks, and resources on BlazorPerformance.com.">
   <div class="eyebrow">What's new</div>
   <h1 class="page-title">Changelog</h1>
   <p class="page-sub">
-    Every tool release, new playbook, and batch of added resources — also available
+    Every tool release, new playbook, and batch of added resources, also available
     as an <a href="/rss.xml">RSS feed</a>.
   </p>
 

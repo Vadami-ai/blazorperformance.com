@@ -3,14 +3,14 @@ import Base from '../layouts/Base.astro';
 import data from '../data/resources.json';
 const total = data.categories.reduce((n, c) => n + c.links.length, 0);
 ---
-<Base title="Resources — BlazorPerformance.com" description="Curated, annotated references for Blazor scalability and performance — organized by the problem you're having.">
+<Base title="Resources | BlazorPerformance.com" description="Curated, annotated references for Blazor scalability and performance, organized by the problem you're having.">
   <div class="eyebrow">Resources</div>
   <h1 class="page-title">Curated, with judgment attached</h1>
   <p class="page-sub">
-    {total} references organized by the problem you're actually having — not by
+    {total} references organized by the problem you're actually having, not by
     content type. Every link carries a note on why it earns a place here. Found
     something that belongs on this list?
-    <a href="https://github.com/Vadami-ai/blazorperformance.com">Open a PR</a> —
+    <a href="https://github.com/Vadami-ai/blazorperformance.com">Open a PR</a>;
     the directory is itself open source.
   </p>
 

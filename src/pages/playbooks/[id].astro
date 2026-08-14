@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
-<Base title={`${entry.data.title} — BlazorPerformance.com`} description={entry.data.description}>
+<Base title={`${entry.data.title} | BlazorPerformance.com`} description={entry.data.description}>
   <article>
     <div class="eyebrow"><a href="/playbooks/">Playbooks</a></div>
     <h1 class="page-title">{entry.data.title}</h1>

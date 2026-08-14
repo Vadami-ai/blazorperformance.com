@@ -18,7 +18,7 @@
         {
           "label": "Blazor Server threat mitigation & circuit lifecycle (Microsoft Learn)",
           "href": "https://learn.microsoft.com/aspnet/core/blazor/security/server/threat-mitigation",
-          "note": "Reads as a security doc but doubles as the best description of resource exhaustion risks — per-circuit memory, connection limits, and denial-of-service surface."
+          "note": "Reads as a security doc but doubles as the best description of resource exhaustion risks: per-circuit memory, connection limits, and denial-of-service surface."
         },
         {
           "label": "Blazor Server Capacity Calculator (this site)",
@@ -30,22 +30,22 @@
     {
       "title": "Azure SignalR Service",
       "slug": "signalr",
-      "intro": "Unit economics decide real cost at scale — connections and messages are both metered.",
+      "intro": "Unit economics decide real cost at scale; connections and messages are both metered.",
       "links": [
         {
           "label": "Azure SignalR Service performance guide (Microsoft Learn)",
           "href": "https://learn.microsoft.com/azure/azure-signalr/signalr-concept-performance",
-          "note": "Connection counts and message throughput per unit, with methodology. The numbers behind every 'connections per unit' assumption — verify against your tier before committing."
+          "note": "Connection counts and message throughput per unit, with methodology. The numbers behind every 'connections per unit' assumption; verify against your tier before committing."
         },
         {
           "label": "ASP.NET Core SignalR hosting and scaling (Microsoft Learn)",
           "href": "https://learn.microsoft.com/aspnet/core/signalr/scale",
-          "note": "The decision doc for Azure SignalR Service vs. self-managed Redis backplane — sticky sessions, scale-out patterns, and their trade-offs."
+          "note": "The decision doc for Azure SignalR Service vs. self-managed Redis backplane: sticky sessions, scale-out patterns, and their trade-offs."
         },
         {
           "label": "Azure SignalR Service pricing",
           "href": "https://azure.microsoft.com/pricing/details/signalr-service/",
-          "note": "Included messages per unit per day by tier. SKU terms change — this page, not a blog post, is the source of truth for the message-budget inputs."
+          "note": "Included messages per unit per day by tier. SKU terms change; this page, not a blog post, is the source of truth for the message-budget inputs."
         }
       ]
     },
@@ -57,7 +57,7 @@
         {
           "label": ".NET diagnostics tools overview (Microsoft Learn)",
           "href": "https://learn.microsoft.com/dotnet/core/diagnostics/",
-          "note": "Map of the whole dotnet-* diagnostics family — counters, trace, gcdump, dump — and when to reach for each."
+          "note": "Map of the whole dotnet-* diagnostics family (counters, trace, gcdump, dump) and when to reach for each."
         },
         {
           "label": "dotnet-counters (Microsoft Learn)",
@@ -67,17 +67,17 @@
         {
           "label": "dotnet-gcdump (Microsoft Learn)",
           "href": "https://learn.microsoft.com/dotnet/core/diagnostics/dotnet-gcdump",
-          "note": "Heap snapshots you can diff — the practical way to attribute per-circuit memory cost and catch circuit-scoped leaks."
+          "note": "Heap snapshots you can diff: the practical way to attribute per-circuit memory cost and catch circuit-scoped leaks."
         },
         {
           "label": "Garbage collection fundamentals (Microsoft Learn)",
           "href": "https://learn.microsoft.com/dotnet/standard/garbage-collection/fundamentals",
-          "note": "Server GC vs. workstation GC and generation behaviour — context you need before interpreting any memory number on a Blazor Server node."
+          "note": "Server GC vs. workstation GC and generation behaviour: context you need before interpreting any memory number on a Blazor Server node."
         },
         {
           "label": "Memory management best practices for ASP.NET Core (Microsoft Learn)",
           "href": "https://learn.microsoft.com/aspnet/core/performance/memory",
-          "note": "The classic traps — captured HttpContext, unbounded caches, large object heap churn — most of which get amplified per-circuit in Blazor Server."
+          "note": "The classic traps (captured HttpContext, unbounded caches, large object heap churn), most of which get amplified per-circuit in Blazor Server."
         },
         {
           "label": "PerfView (GitHub)",
@@ -85,7 +85,7 @@
           "note": "Old UI, unmatched depth. When dotnet-counters says 'memory grows' and gcdump says 'somewhere in here', PerfView tells you exactly where."
         },
         {
-          "label": "David Fowler — ASP.NET Core Diagnostic Scenarios (GitHub)",
+          "label": "David Fowler: ASP.NET Core Diagnostic Scenarios (GitHub)",
           "href": "https://github.com/davidfowl/AspNetCoreDiagnosticScenarios",
           "note": "Async and memory anti-patterns with corrected examples, from the ASP.NET architect. Many 'Blazor is slow' cases are actually one of these."
         }
@@ -97,7 +97,7 @@
       "intro": "A capacity plan is a hypothesis until a soak test confirms it.",
       "links": [
         {
-          "label": "crank — .NET benchmarking infrastructure (GitHub)",
+          "label": "crank: .NET benchmarking infrastructure (GitHub)",
           "href": "https://github.com/dotnet/crank",
           "note": "The load infrastructure the ASP.NET team itself uses for TechEmpower runs. Steeper setup than k6, but it speaks SignalR."
         },
@@ -109,7 +109,7 @@
         {
           "label": "NBomber",
           "href": "https://nbomber.com/",
-          "note": "Load testing in C#/F# — lets .NET teams write scenarios in the language they know, including against SignalR hubs with the real client library."
+          "note": "Load testing in C#/F# that lets .NET teams write scenarios in the language they know, including against SignalR hubs with the real client library."
         },
         {
           "label": "Azure Load Testing (Microsoft Learn)",
@@ -124,7 +124,7 @@
       "intro": "Broader .NET performance craft that pays off in every Blazor workload.",
       "links": [
         {
-          "label": "Stephen Toub — Performance improvements in .NET (annual series)",
+          "label": "Stephen Toub: Performance improvements in .NET (annual series)",
           "href": "https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-9/",
           "note": "The annual deep-dive is the single best education in how .NET actually executes. Read the newest edition; skim earlier years for the cumulative picture."
         },
@@ -136,7 +136,7 @@
         {
           "label": "ASP.NET Core Blazor performance best practices (Microsoft Learn)",
           "href": "https://learn.microsoft.com/aspnet/core/blazor/performance",
-          "note": "Component-level rendering optimizations — virtualization, ShouldRender, event throttling. This is the per-circuit CPU/allocation side of the scaling story."
+          "note": "Component-level rendering optimizations: virtualization, ShouldRender, event throttling. This is the per-circuit CPU/allocation side of the scaling story."
         }
       ]
     },
@@ -156,7 +156,7 @@
           "note": "The ASP.NET/Blazor standups are where roadmap and performance work get discussed months before documentation lands."
         },
         {
-          "label": ".NET Blog — ASP.NET Core & Blazor posts",
+          "label": ".NET Blog: ASP.NET Core & Blazor posts",
           "href": "https://devblogs.microsoft.com/dotnet/",
           "note": "Release-cycle posts routinely include Blazor scalability changes (rendering modes, SignalR improvements) worth folding into capacity assumptions."
         }

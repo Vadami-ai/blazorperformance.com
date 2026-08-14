@@ -5,14 +5,14 @@ import { getCollection } from 'astro:content';
 const playbooks = (await getCollection('playbooks', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<Base title="BlazorPerformance.com — Blazor scalability & performance engineering">
+<Base title="BlazorPerformance.com | Blazor scalability & performance engineering">
   <section class="hero">
     <div class="hero-copy">
       <div class="eyebrow">Field-tested, not theoretical</div>
-      <h1>Blazor at enterprise scale is a solved problem.<br />The answers just weren't in one place — until now.</h1>
+      <h1>Blazor at enterprise scale is a solved problem.<br />The answers just weren't in one place. Until now.</h1>
       <p>
         Tools, playbooks, and curated references for engineering Blazor Server and
-        WebAssembly apps that hold up at thousands of concurrent users — distilled
+        WebAssembly apps that hold up at thousands of concurrent users, distilled
         from a decade of performance engineering on large enterprise systems.
       </p>
       <div class="hero-cta">
@@ -45,19 +45,19 @@ const playbooks = (await getCollection('playbooks', ({ data }) => !data.draft))
     <div class="card">
       <div class="eyebrow">Tools</div>
       <h3>Use, don't just read</h3>
-      <p>Interactive calculators and utilities you can put to work today — every one open source and inspectable.</p>
+      <p>Interactive calculators and utilities you can put to work today, every one open source and inspectable.</p>
       <a href="/tools/">Browse tools →</a>
     </div>
     <div class="card">
       <div class="eyebrow">Playbooks</div>
       <h3>Runbooks, not blog posts</h3>
-      <p>Step-by-step methodology for capacity planning, memory measurement, and scaling decisions — with the formulas shown.</p>
+      <p>Step-by-step methodology for capacity planning, memory measurement, and scaling decisions, with the formulas shown.</p>
       <a href="/playbooks/">Read playbooks →</a>
     </div>
     <div class="card">
       <div class="eyebrow">Resources</div>
       <h3>Curated, annotated</h3>
-      <p>The Blazor performance references worth your time, organized by the problem you're actually having — each with an honest note on why it's listed.</p>
+      <p>The Blazor performance references worth your time, organized by the problem you're actually having, each with an honest note on why it's listed.</p>
       <a href="/resources/">Explore resources →</a>
     </div>
   </section>

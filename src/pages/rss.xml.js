@@ -27,7 +27,7 @@ export async function GET(context) {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>BlazorPerformance.com — What's new</title>
+    <title>BlazorPerformance.com: What's new</title>
     <link>${site}</link>
     <description>New tools, playbooks, and curated resources for Blazor scalability and performance engineering.</description>
     <language>en-us</language>

@@ -14,7 +14,7 @@ before any public disclosure.
 This is a fully static site: no server-side code, no accounts, no data
 collection. The most relevant risks are supply-chain (npm dependencies, GitHub
 Actions pipeline) and XSS via contributed content (resource-directory entries,
-markdown) — reports in those areas are especially welcome.
+markdown); reports in those areas are especially welcome.
 
 ## Supported versions
 

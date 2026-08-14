@@ -1,6 +1,6 @@
 # blazorperformance.com
 
-Source for **[blazorperformance.com](https://blazorperformance.com)** — tools,
+Source for **[blazorperformance.com](https://blazorperformance.com)**: tools,
 playbooks, and curated references for Blazor scalability and performance
 engineering. A [Vadami LLC](https://vadami.ai) project.
 
@@ -14,7 +14,7 @@ The resource directory is community-editable: edit
 [`src/data/resources.json`](src/data/resources.json) and open a PR. Ground rules:
 
 - Place the link in the category matching the **problem it solves**, not its format.
-- Write a 1–2 sentence annotation saying *why it's worth someone's time* — honest
+- Write a 1–2 sentence annotation saying *why it's worth someone's time*; honest
   notes ("dated but the math holds") beat marketing copy.
 - Performance/scalability relevance required; general Blazor content belongs in
   [Awesome Blazor](https://github.com/AdrianWilczynski/Awesome-Blazor) instead.

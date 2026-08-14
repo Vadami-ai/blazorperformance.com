@@ -4,11 +4,11 @@ import { getCollection } from 'astro:content';
 const playbooks = (await getCollection('playbooks', ({ data }) => !data.draft))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
-<Base title="Playbooks — BlazorPerformance.com" description="Step-by-step runbooks for Blazor capacity planning, memory measurement, and scaling — with the formulas shown.">
+<Base title="Playbooks | BlazorPerformance.com" description="Step-by-step runbooks for Blazor capacity planning, memory measurement, and scaling, with the formulas shown.">
   <div class="eyebrow">Playbooks</div>
   <h1 class="page-title">Runbooks from the field</h1>
   <p class="page-sub">
-    Not think-pieces — step-by-step methodology you can follow, with every formula
+    Not think-pieces: step-by-step methodology you can follow, with every formula
     and measurement command shown. Written the way a senior engineer would hand
     work to a teammate.
   </p>
