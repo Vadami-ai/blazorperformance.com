@@ -13,7 +13,7 @@
     "sync-tools": "node scripts/sync-tools.mjs"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.3.0",
-    "astro": "^5.7.0"
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.2.2"
   }
 }
