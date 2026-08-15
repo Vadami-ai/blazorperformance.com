@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Validate resources.json
+        run: |
+          node -e "
+            const d = require('./src/data/resources.json');
+            let n = 0;
+            for (const c of d.categories) {
+              if (!c.title || !c.slug || !c.intro) throw new Error('category missing title/slug/intro: ' + JSON.stringify(c.title));
+              for (const l of c.links) {
+                n++;
+                if (!l.label || !l.href || !l.note) throw new Error('link missing label/href/note: ' + JSON.stringify(l.label || l.href));
+                if (l.note.length < 40) throw new Error('annotation too short (min 40 chars): ' + l.label);
+                if (/—/.test(l.note + l.label)) throw new Error('em dash found (use commas/colons): ' + l.label);
+              }
+            }
+            console.log('resources.json OK: ' + n + ' links');
+          "
