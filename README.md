@@ -18,7 +18,7 @@ and process: [CONTRIBUTING.md](CONTRIBUTING.md). Ground rules:
 - Write a 1–2 sentence annotation saying *why it's worth someone's time*; honest
   notes ("dated but the math holds") beat marketing copy.
 - Performance/scalability relevance required; general Blazor content belongs in
-  [Awesome Blazor](https://github.com/AdrianWilczynski/Awesome-Blazor) instead.
+  [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor) instead.
 
 ## Development
 

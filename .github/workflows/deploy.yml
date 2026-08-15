@@ -38,3 +38,25 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  linkcheck:
+    name: Validate all links on the live site
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # Crawls every page from the homepage, following internal links, and
+      # checks every anchor, image, script, and stylesheet target (internal
+      # and external). Fails the workflow on any broken link.
+      # Skipped: LinkedIn and X block bots; mailto links are not fetchable.
+      - name: Crawl and validate links
+        run: >
+          npx linkinator@6 https://blazorperformance.com
+          --recurse
+          --verbosity error
+          --timeout 30000
+          --retry
+          --skip "linkedin\.com|twitter\.com|x\.com|^mailto:"
+

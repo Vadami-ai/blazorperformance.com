@@ -17,7 +17,7 @@ explains what we accept, what we don't, and how a change gets to production.
 - Write a 1–2 sentence annotation (40+ characters) saying *why it's worth someone's
   time*; honest notes ("dated but the math holds") beat marketing copy.
 - Performance/scalability relevance required. General Blazor content belongs in
-  [Awesome Blazor](https://github.com/AdrianWilczynski/Awesome-Blazor) instead.
+  [Awesome Blazor](https://github.com/AdrienTorris/awesome-blazor) instead.
 - No self-promotion without substance: linking your own article is fine if it
   teaches something this directory lacks; a product landing page is not.
 - Style: no em dashes in prose (CI enforces this); use commas, colons, or periods.
