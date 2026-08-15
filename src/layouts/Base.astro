@@ -43,36 +43,41 @@ const path = Astro.url.pathname;
   <link rel="alternate" type="application/rss+xml" title="BlazorPerformance: What's new" href="/rss.xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <style is:global>
     :root {
-      --bg: #f7f8fa;
+      --bg: #f4f6fa;
       --paper: #ffffff;
-      --ink-900: #0b1220;
-      --ink-700: #1e293b;
-      --ink-600: #334155;
-      --ink-500: #475569;
-      --ink-400: #64748b;
-      --ink-200: #e2e8f0;
-      --ink-100: #eef1f5;
-      --green: #16a34a;
-      --green-soft: #e8f7ee;
-      --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
-      --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      --ink-900: #14213d;
+      --ink-700: #17233b;
+      --ink-600: #33415c;
+      --ink-500: #5a6b85;
+      --ink-400: #8a97ac;
+      --ink-200: #d8dfea;
+      --ink-100: #ecf1f8;
+      --accent: #2e5fc4;         /* link / highlight blue */
+      --accent-deep: #1d3a6d;    /* navy for buttons & headings */
+      --accent-soft: #e7eefa;    /* active / hover fill */
+      --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+      --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      /* Back-compat aliases (older pages/components reference these) */
+      --green: var(--accent);
+      --green-soft: var(--accent-soft);
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #0b1220;
-        --paper: #101a2e;
+        --bg: #0f1b33;
+        --paper: #14213d;
         --ink-900: #f1f5f9;
         --ink-700: #e2e8f0;
         --ink-600: #cbd5e1;
         --ink-500: #94a3b8;
         --ink-400: #7c8ba1;
-        --ink-200: #24324a;
-        --ink-100: #1a2740;
-        --green: #34d27b;
-        --green-soft: #11321f;
+        --ink-200: #2a3b5c;
+        --ink-100: #1c2b4a;
+        --accent: #6f97e8;
+        --accent-deep: #4b77d9;
+        --accent-soft: #1c2b4a;
       }
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -85,13 +90,13 @@ const path = Astro.url.pathname;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
     }
-    a { color: var(--green); text-decoration: none; }
+    a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
     code, pre { font-family: var(--font-mono); font-size: 0.88em; }
     pre {
       background: var(--ink-100);
       border: 1px solid var(--ink-200);
-      border-radius: 10px;
+      border-radius: 8px;
       padding: 14px 16px;
       overflow-x: auto;
       line-height: 1.55;
@@ -101,35 +106,85 @@ const path = Astro.url.pathname;
       border-radius: 5px;
       padding: 1px 5px;
     }
-    .wrap { max-width: 1060px; margin: 0 auto; padding: 0 20px; }
+    .wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
     .site-header {
       position: sticky; top: 0; z-index: 50;
-      background: color-mix(in srgb, var(--bg) 88%, transparent);
-      backdrop-filter: blur(10px);
+      background: var(--paper);
       border-bottom: 1px solid var(--ink-200);
     }
     .site-header .wrap {
       display: flex; align-items: center; gap: 22px;
-      height: 58px;
+      height: 64px;
     }
     .brand {
-      display: flex; align-items: center; gap: 9px;
-      font-weight: 800; font-size: 15.5px; color: var(--ink-900);
-      letter-spacing: -0.01em;
+      display: flex; align-items: center; gap: 10px;
+      color: var(--ink-900);
     }
     .brand:hover { text-decoration: none; }
-    .brand svg { display: block; }
-    .brand .tld { color: var(--green); }
-    nav.main { display: flex; gap: 4px; margin-left: auto; flex-wrap: wrap; }
-    nav.main a {
-      color: var(--ink-500); font-size: 14px; font-weight: 500;
-      padding: 6px 11px; border-radius: 8px;
+    .brand .mark {
+      width: 30px; height: 30px; border-radius: 7px;
+      background: var(--accent-deep); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-style: italic; font-size: 18px; font-weight: 700; flex: 0 0 auto;
     }
-    nav.main a:hover { color: var(--ink-900); background: var(--ink-100); text-decoration: none; }
-    nav.main a.active { color: var(--ink-900); background: var(--ink-100); }
+    .brand .word { display: flex; flex-direction: column; line-height: 1.15; }
+    .brand .name { font-size: 16px; font-weight: 700; letter-spacing: -0.01em; white-space: nowrap; }
+    .brand .name .b { color: var(--accent); }
+    .brand .tag { font-size: 8.5px; font-weight: 600; letter-spacing: 0.28em; color: var(--ink-400); }
+    .header-nav { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+    .menu-toggle { display: none; }
+    .gh-label { display: none; }
+    nav.main { display: flex; gap: 2px; flex-wrap: wrap; }
+    nav.main a {
+      color: var(--ink-600); font-size: 13.5px; font-weight: 500;
+      padding: 8px 12px; border-radius: 6px; white-space: nowrap;
+    }
+    nav.main a:hover { color: var(--accent-deep); background: var(--accent-soft); text-decoration: none; }
+    nav.main a.active { color: var(--accent-deep); background: var(--accent-soft); }
+    .header-github {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 8px;
+      color: var(--ink-600); flex: 0 0 auto;
+    }
+    .header-github:hover { color: var(--accent-deep); background: var(--accent-soft); text-decoration: none; }
+    .header-cta {
+      background: var(--accent-deep); color: #fff;
+      font-size: 13.5px; font-weight: 600;
+      border-radius: 8px; padding: 10px 18px; white-space: nowrap;
+    }
+    .header-cta:hover { background: var(--ink-900); text-decoration: none; }
+    @media (max-width: 880px) {
+      .menu-toggle {
+        display: inline-flex; align-items: center; justify-content: center;
+        margin-left: auto; width: 42px; height: 42px;
+        border: 1px solid var(--ink-200); border-radius: 8px;
+        background: var(--paper); color: var(--ink-600); cursor: pointer;
+      }
+      .menu-toggle[aria-expanded="true"] { color: var(--accent-deep); background: var(--accent-soft); border-color: var(--accent-deep); }
+      .header-nav {
+        display: none;
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; align-items: stretch; gap: 6px;
+        background: var(--paper);
+        border-bottom: 1px solid var(--ink-200);
+        box-shadow: 0 14px 28px rgba(20, 33, 61, 0.12);
+        padding: 12px 20px 18px;
+        margin-left: 0;
+      }
+      .header-nav.open { display: flex; }
+      nav.main { flex-direction: column; gap: 2px; }
+      nav.main a { font-size: 15px; padding: 12px 12px; border-radius: 8px; }
+      .header-github {
+        width: auto; height: auto; justify-content: flex-start;
+        gap: 10px; padding: 12px 12px; font-size: 15px; font-weight: 500;
+      }
+      .gh-label { display: inline; }
+      .header-cta { text-align: center; margin-top: 6px; padding: 13px 18px; font-size: 15px; }
+    }
     main { min-height: 62vh; padding: 40px 0 64px; }
     .site-footer {
       border-top: 1px solid var(--ink-200);
+      background: var(--paper);
       padding: 26px 0 40px;
       font-size: 13.5px; color: var(--ink-400);
     }
@@ -137,33 +192,34 @@ const path = Astro.url.pathname;
     .site-footer a { color: var(--ink-500); }
     /* shared building blocks */
     .eyebrow {
-      font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--green);
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent);
     }
     h1.page-title { font-size: 34px; line-height: 1.2; letter-spacing: -0.02em; color: var(--ink-900); margin: 6px 0 10px; }
     .page-sub { font-size: 17px; color: var(--ink-500); max-width: 46em; }
     .card {
       background: var(--paper);
       border: 1px solid var(--ink-200);
-      border-radius: 14px;
+      border-radius: 10px;
       padding: 22px 24px;
     }
     .btn {
       display: inline-block; font-weight: 600; font-size: 14.5px;
-      padding: 10px 18px; border-radius: 10px; border: 1px solid var(--ink-200);
-      color: var(--ink-900); background: var(--paper);
+      padding: 12px 20px; border-radius: 8px; border: 1px solid var(--accent-deep);
+      color: var(--accent-deep); background: var(--paper);
     }
-    .btn:hover { text-decoration: none; border-color: var(--ink-400); }
-    .btn-primary { background: var(--ink-900); border-color: var(--ink-900); color: var(--bg); }
-    .btn-primary:hover { opacity: 0.92; }
-    .btn-green { background: var(--green); border-color: var(--green); color: #fff; }
+    .btn:hover { text-decoration: none; background: var(--accent-soft); }
+    .btn-primary { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
+    .btn-primary:hover { background: var(--ink-900); }
+    .btn-green { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
+    .btn-green:hover { background: var(--ink-900); }
     .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     @media (max-width: 800px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
     .newsletter {
-      background: var(--green-soft);
-      border: 1px solid color-mix(in srgb, var(--green) 30%, transparent);
-      border-radius: 14px;
+      background: var(--ink-100);
+      border: 1px solid var(--ink-200);
+      border-radius: 10px;
       padding: 22px 24px;
       display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between;
     }
@@ -178,7 +234,7 @@ const path = Astro.url.pathname;
     .prose li { margin-bottom: 5px; }
     .prose pre { margin: 16px 0; }
     .prose blockquote {
-      border-left: 3px solid var(--green);
+      border-left: 3px solid var(--accent);
       padding: 4px 0 4px 16px;
       color: var(--ink-500);
       margin: 16px 0;
@@ -193,19 +249,33 @@ const path = Astro.url.pathname;
   <header class="site-header">
     <div class="wrap">
       <a class="brand" href="/">
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <rect x="3" y="3" width="7" height="7" rx="1.5" fill="currentColor" />
-          <rect x="14" y="3" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.5" />
-          <rect x="3" y="14" width="7" height="7" rx="1.5" fill="currentColor" opacity="0.7" />
-          <rect x="14" y="14" width="7" height="7" rx="1.5" fill="#16a34a" />
-        </svg>
-        BlazorPerformance<span class="tld">.com</span>
+        <span class="mark">B</span>
+        <span class="word">
+          <span class="name"><span class="b">Blazor</span>Performance</span>
+          <span class="tag">FASTER · LEANER · BETTER</span>
+        </span>
       </a>
-      <nav class="main">
-        {nav.map((item) => (
-          <a href={item.href} class={path.startsWith(item.href.replace(/\/$/, '')) ? 'active' : ''}>{item.label}</a>
-        ))}
-      </nav>
+      <button class="menu-toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" y1="7" x2="20" y2="7"></line>
+          <line x1="4" y1="12" x2="20" y2="12"></line>
+          <line x1="4" y1="17" x2="20" y2="17"></line>
+        </svg>
+      </button>
+      <div class="header-nav" id="site-nav">
+        <nav class="main">
+          {nav.map((item) => (
+            <a href={item.href} class={path.startsWith(item.href.replace(/\/$/, '')) ? 'active' : ''}>{item.label}</a>
+          ))}
+        </nav>
+        <a class="header-github" href="https://github.com/Vadami-ai" aria-label="GitHub" title="Vadami-ai on GitHub">
+          <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          <span class="gh-label">GitHub</span>
+        </a>
+        <a class="header-cta" href="/tools/capacity-calculator/">Get started</a>
+      </div>
     </div>
   </header>
   <main>
@@ -222,5 +292,22 @@ const path = Astro.url.pathname;
       <a href="/work-with-me/">Work with me</a>
     </div>
   </footer>
+  <script is:inline>
+    (function () {
+      var toggle = document.querySelector('.menu-toggle');
+      var nav = document.getElementById('site-nav');
+      if (!toggle || !nav) return;
+      toggle.addEventListener('click', function () {
+        var open = nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+      });
+      nav.addEventListener('click', function (e) {
+        if (e.target.closest('a')) {
+          nav.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

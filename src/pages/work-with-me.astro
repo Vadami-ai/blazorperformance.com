@@ -4,29 +4,57 @@ import Base from '../layouts/Base.astro';
 <Base title="Work with me | BlazorPerformance.com" description="Advisory, training, and conference speaking on Blazor and enterprise .NET scalability and performance.">
   <div class="eyebrow">Work with me</div>
   <h1 class="page-title">Advisory, training & speaking</h1>
+  <p class="page-sub" style="margin-bottom: 32px;">
+    The tools and playbooks on this site are free and always will be. For teams
+    that want hands-on help, I occasionally take on engagements in:
+  </p>
 
-  <div class="prose" style="margin-top: 20px;">
+  <div class="grid-2 engagements">
+    <div class="card">
+      <h2>Capacity & scalability reviews</h2>
+      <p>Architecture and sizing assessment for Blazor Server / .NET workloads before a launch, migration, or procurement decision.</p>
+    </div>
+    <div class="card">
+      <h2>Performance investigations</h2>
+      <p>Structured root-cause work on memory growth, latency, and throughput problems in production systems.</p>
+    </div>
+    <div class="card">
+      <h2>Team training</h2>
+      <p>Practical workshops on capacity planning, performance measurement, and scalability engineering for enterprise .NET teams.</p>
+    </div>
+    <div class="card">
+      <h2>Conference & event speaking</h2>
+      <p>Talks on scalability, performance engineering, and technology leadership. An experienced speaker at PMI Global and chapter events, user groups, and industry conferences; available for keynotes, sessions, and panels.</p>
+    </div>
+  </div>
+
+  <div class="lunch-callout">
+    <h2>Prefer something lighter than a formal workshop?</h2>
     <p>
-      The tools and playbooks on this site are free and always will be. For teams
-      that want hands-on help, I occasionally take on engagements in:
-    </p>
-    <ul>
-      <li><strong>Capacity & scalability reviews:</strong> architecture and sizing assessment for Blazor Server / .NET workloads before a launch, migration, or procurement decision.</li>
-      <li><strong>Performance investigations:</strong> structured root-cause work on memory growth, latency, and throughput problems in production systems.</li>
-      <li><strong>Team training:</strong> practical workshops on capacity planning, performance measurement, and scalability engineering for enterprise .NET teams.</li>
-      <li><strong>Conference & event speaking:</strong> talks on scalability, performance engineering, and technology leadership. An experienced speaker at PMI Global and chapter events, user groups, and industry conferences; available for keynotes, sessions, and panels.</li>
-    </ul>
-    <p>
-      Prefer something lighter than a formal workshop? These topics also work well
-      as lunch-and-learn sessions. <a href="https://learnatlunch.today">LearnAtLunch.Today</a>,
-      our peer-learning platform, makes it easy to run bite-sized 30&ndash;45 minute
-      knowledge-sharing sessions inside your organization, on performance
-      engineering or anything else your team wants to teach each other.
-    </p>
-    <p>
-      If that's useful to your team, write to <a href="mailto:info@vadami.ai?subject=BlazorPerformance%20engagement%20inquiry">info@vadami.ai</a> with
-      a short description of what you're facing. I read everything, and I'll
-      tell you honestly, including when the free playbooks already cover what you need.
+      These topics also work well as lunch-and-learn sessions. <a href="https://learnatlunch.today">LearnAtLunch.Today</a>, our
+      peer-learning platform, makes it easy to run bite-sized 30&ndash;45 minute knowledge-sharing
+      sessions inside your organization, on performance engineering or anything else
+      your team wants to teach each other.
     </p>
   </div>
+
+  <p class="closing">
+    If that's useful to your team, write to <a href="mailto:info@vadami.ai?subject=BlazorPerformance%20engagement%20inquiry">info@vadami.ai</a> with
+    a short description of what you're facing. I read everything, and I'll
+    tell you honestly, including when the free playbooks already cover what you need.
+  </p>
+  <a class="btn btn-primary" href="mailto:info@vadami.ai?subject=Working%20together">Get in touch</a>
 </Base>
+
+<style>
+  .engagements { margin-bottom: 24px; }
+  .engagements h2 { font-size: 17px; color: var(--ink-900); margin-bottom: 8px; }
+  .engagements p { font-size: 13.5px; line-height: 1.6; color: var(--ink-500); }
+  .lunch-callout {
+    background: var(--ink-100); border: 1px solid var(--ink-200);
+    border-radius: 10px; padding: 22px 24px; margin-bottom: 32px; max-width: 920px;
+  }
+  .lunch-callout h2 { font-size: 16px; color: var(--ink-900); margin-bottom: 6px; }
+  .lunch-callout p { font-size: 13.5px; line-height: 1.6; color: var(--ink-500); }
+  .closing { font-size: 15px; line-height: 1.7; color: var(--ink-600); max-width: 44em; margin-bottom: 20px; }
+</style>

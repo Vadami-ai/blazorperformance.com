@@ -8,74 +8,73 @@ const playbooks = (await getCollection('playbooks', ({ data }) => !data.draft))
 <Base title="BlazorPerformance.com | Blazor scalability & performance engineering">
   <section class="hero">
     <div class="hero-copy">
-      <div class="eyebrow">Field-tested, not theoretical</div>
-      <h1>Blazor at enterprise scale is a solved problem.<br />The answers just weren't in one place. Until now.</h1>
+      <h1>Blazor at enterprise scale is a solved problem. The answers just weren't in one place. <span class="accent">Until now.</span></h1>
       <p>
         Tools, playbooks, and curated references for engineering Blazor Server and
         WebAssembly apps that hold up at thousands of concurrent users, distilled
         from a decade of performance engineering on large enterprise systems.
       </p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="/tools/capacity-calculator/">Open the capacity calculator</a>
-        <a class="btn" href="/playbooks/">Read the playbooks</a>
+        <a class="btn btn-primary" href="/tools/capacity-calculator/">Open the capacity calculator →</a>
+        <a class="btn" href="/playbooks/">View the playbooks</a>
+      </div>
+      <div class="hero-proof">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>
+        <span>Field-tested, not theoretical. Built for architects, developers, and admins, and backed by data.</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="/images/hero-devices.webp" alt="Blazor Server Capacity Calculator on laptop and phone" width="1200" height="800" loading="eager" />
+      <div class="hero-stats">
+        <div><strong>1</strong><span>interactive tool</span></div>
+        <div><strong>2</strong><span>playbooks</span></div>
+        <div><strong>24</strong><span>references</span></div>
+        <div><strong>100%</strong><span>open source</span></div>
       </div>
     </div>
   </section>
 
-  <section class="feature card">
-    <div class="feature-copy">
-      <div class="eyebrow">Featured tool</div>
-      <h2>Blazor Server Capacity Calculator</h2>
-      <p>
-        Size app nodes, Azure SignalR units, memory, and daily message budget from
-        your measured workload assumptions. Interactive scaling curve, scenario
-        comparison, shareable plans. Free, open source, runs entirely in your browser.
-      </p>
-      <div class="hero-cta">
-        <a class="btn btn-green" href="/tools/capacity-calculator/">Launch it →</a>
-        <a class="btn" href="https://github.com/Vadami-ai/blazor-server-capacity-calculator">Source on GitHub</a>
-      </div>
+  <section class="feature-strip" aria-label="What you'll find here">
+    <div>
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 016.5 17H20V4H6.5A2.5 2.5 0 004 6.5v13z"></path><path d="M4 19.5A2.5 2.5 0 006.5 22H20v-5"></path></svg>
+      <div><strong>Playbooks</strong><p>Step-by-step methodology with every formula and command shown.</p></div>
     </div>
-    <a href="/tools/capacity-calculator/" class="feature-shot">
-      <img src="/images/capacity-calculator.png" alt="Screenshot of the Blazor Server Capacity Calculator" loading="lazy" />
-    </a>
+    <div>
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4.5 4.5 0 00-6 6L3 18l3 3 5.7-5.7a4.5 4.5 0 006-6l-3 3-3-3 3-3z"></path></svg>
+      <div><strong>Tools</strong><p>Free, open source, run entirely in your browser. No telemetry.</p></div>
+    </div>
+    <div>
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2v16z"></path></svg>
+      <div><strong>Resources</strong><p>24 curated references, each with an honest note on why it's listed.</p></div>
+    </div>
+    <div>
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="var(--accent-deep)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+      <div><strong>Field experience</strong><p>A decade of performance engineering on ERP-class enterprise systems.</p></div>
+    </div>
   </section>
 
   <section class="grid-3 pillars">
+    {playbooks.length > 0 && (
+      <div class="card">
+        <div class="eyebrow">Latest playbook</div>
+        <h3>{playbooks[0].data.title}</h3>
+        <p>{playbooks[0].data.description}</p>
+        <a href={`/playbooks/${playbooks[0].id}/`}>Read more →</a>
+      </div>
+    )}
     <div class="card">
-      <div class="eyebrow">Tools</div>
-      <h3>Use, don't just read</h3>
-      <p>Interactive calculators and utilities you can put to work today, every one open source and inspectable.</p>
-      <a href="/tools/">Browse tools →</a>
-    </div>
-    <div class="card">
-      <div class="eyebrow">Playbooks</div>
-      <h3>Runbooks, not blog posts</h3>
-      <p>Step-by-step methodology for capacity planning, memory measurement, and scaling decisions, with the formulas shown.</p>
-      <a href="/playbooks/">Read playbooks →</a>
+      <div class="eyebrow">Featured tool</div>
+      <h3>Blazor Server Capacity Calculator</h3>
+      <p>Size nodes, SignalR units, memory, and message budget from your measured workload. Scaling curve, scenario comparison, shareable plans.</p>
+      <a href="/tools/capacity-calculator/">Open the tool →</a>
     </div>
     <div class="card">
       <div class="eyebrow">Resources</div>
-      <h3>Curated, annotated</h3>
-      <p>The Blazor performance references worth your time, organized by the problem you're actually having, each with an honest note on why it's listed.</p>
+      <h3>Curated, with judgment attached</h3>
+      <p>The references worth your time, organized by the problem you're actually having, each with an honest note on why it's listed.</p>
       <a href="/resources/">Explore resources →</a>
     </div>
   </section>
-
-  {playbooks.length > 0 && (
-    <section class="latest">
-      <div class="eyebrow">Latest playbooks</div>
-      <div class="grid-2" style="margin-top: 12px;">
-        {playbooks.slice(0, 2).map((p) => (
-          <a class="card playbook-card" href={`/playbooks/${p.id}/`}>
-            <h3>{p.data.title}</h3>
-            <p>{p.data.description}</p>
-            <span class="meta">{p.data.date.toLocaleDateString('en-US', { timeZone: 'UTC',  year: 'numeric', month: 'short', day: 'numeric' })}{p.data.readingTime ? ` · ${p.data.readingTime}` : ''}</span>
-          </a>
-        ))}
-      </div>
-    </section>
-  )}
 
   <section style="margin-top: 34px;">
     <Newsletter />
@@ -83,26 +82,42 @@ const playbooks = (await getCollection('playbooks', ({ data }) => !data.draft))
 </Base>
 
 <style>
-  .hero { padding: 26px 0 34px; }
+  .hero {
+    display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px;
+    align-items: center; padding: 26px 0 40px;
+  }
   .hero h1 {
-    font-size: 40px; line-height: 1.16; letter-spacing: -0.025em;
-    color: var(--ink-900); margin: 10px 0 16px; max-width: 21em;
+    font-size: clamp(30px, 3.6vw, 46px); line-height: 1.14; letter-spacing: -0.025em;
+    color: var(--ink-900); margin: 0 0 18px; text-wrap: pretty;
   }
-  .hero p { font-size: 17.5px; color: var(--ink-500); max-width: 44em; }
-  .hero-cta { display: flex; gap: 12px; margin-top: 22px; flex-wrap: wrap; }
-  .feature {
-    display: grid; grid-template-columns: 1.1fr 1fr; gap: 28px;
-    align-items: center; margin-bottom: 22px;
+  .hero h1 .accent { color: var(--accent); }
+  .hero p { font-size: 17px; color: var(--ink-500); max-width: 34em; text-wrap: pretty; }
+  .hero-cta { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+  .hero-proof {
+    display: flex; align-items: center; gap: 10px;
+    margin-top: 24px; font-size: 14px; color: var(--ink-600);
   }
-  .feature h2 { font-size: 26px; letter-spacing: -0.015em; color: var(--ink-900); margin: 6px 0 10px; }
-  .feature p { color: var(--ink-500); font-size: 15.5px; }
-  .feature-shot img { width: 100%; border-radius: 10px; border: 1px solid var(--ink-200); display: block; }
-  @media (max-width: 860px) { .feature { grid-template-columns: 1fr; } .hero h1 { font-size: 31px; } }
-  .pillars h3 { font-size: 17px; color: var(--ink-900); margin: 6px 0 8px; }
-  .pillars p { font-size: 14.5px; color: var(--ink-500); margin-bottom: 10px; }
-  .latest { margin-top: 30px; }
-  .playbook-card h3 { font-size: 17px; color: var(--ink-900); margin-bottom: 8px; }
-  .playbook-card p { font-size: 14.5px; color: var(--ink-500); margin-bottom: 10px; }
-  .playbook-card .meta { font-size: 12.5px; color: var(--ink-400); }
-  .playbook-card:hover { text-decoration: none; border-color: var(--ink-400); }
+  .hero-visual img {
+    width: 100%; display: block; border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(20, 33, 61, 0.12);
+  }
+  .hero-stats {
+    display: flex; justify-content: center; gap: clamp(18px, 3vw, 40px); margin-top: 20px;
+  }
+  .hero-stats div { text-align: center; }
+  .hero-stats strong { display: block; font-family: var(--font-mono); font-size: 20px; font-weight: 600; color: var(--ink-900); }
+  .hero-stats span { font-size: 12px; color: var(--ink-400); }
+  @media (max-width: 900px) { .hero { grid-template-columns: 1fr; gap: 28px; } }
+  .feature-strip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 24px;
+    background: var(--paper); border: 1px solid var(--ink-200); border-radius: 10px;
+    padding: 26px 28px; margin-bottom: 26px;
+  }
+  .feature-strip > div { display: flex; gap: 14px; align-items: flex-start; }
+  .feature-strip svg { flex: 0 0 auto; }
+  .feature-strip strong { display: block; font-size: 14.5px; color: var(--ink-900); margin-bottom: 3px; }
+  .feature-strip p { font-size: 13px; line-height: 1.55; color: var(--ink-500); }
+  .pillars .card { background: var(--ink-100); display: flex; flex-direction: column; }
+  .pillars h3 { font-size: 17px; color: var(--ink-900); margin: 10px 0 8px; }
+  .pillars p { font-size: 14.5px; color: var(--ink-500); margin-bottom: 12px; flex: 1; }
 </style>
