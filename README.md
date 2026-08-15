@@ -11,7 +11,8 @@ content pages. The hosted tools are self-contained bundles copied into
 ## Contributing a resource
 
 The resource directory is community-editable: edit
-[`src/data/resources.json`](src/data/resources.json) and open a PR. Ground rules:
+[`src/data/resources.json`](src/data/resources.json) and open a PR. Full scope
+and process: [CONTRIBUTING.md](CONTRIBUTING.md). Ground rules:
 
 - Place the link in the category matching the **problem it solves**, not its format.
 - Write a 1–2 sentence annotation saying *why it's worth someone's time*; honest
